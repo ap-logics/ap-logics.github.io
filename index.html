@@ -29,64 +29,73 @@
             background: var(--bg-primary);
             color: var(--text-primary);
             overflow-x: hidden;
-            cursor: crosshair;
         }
 
-        /* Custom Cursor - Unique crosshair design */
-        .cursor {
-            position: fixed;
-            width: 30px;
-            height: 30px;
-            pointer-events: none;
-            z-index: 9999;
-            transform: translate(-50%, -50%);
-            mix-blend-mode: difference;
+        /* Custom Cursor - Only for desktop */
+        @media (hover: hover) and (pointer: fine) {
+            body {
+                cursor: none;
+            }
+
+            .cursor {
+                position: fixed;
+                width: 30px;
+                height: 30px;
+                pointer-events: none;
+                z-index: 9999;
+                transform: translate(-50%, -50%);
+            }
+
+            .cursor::before,
+            .cursor::after {
+                content: '';
+                position: absolute;
+                background: var(--accent-neon);
+            }
+
+            .cursor::before {
+                width: 100%;
+                height: 1px;
+                top: 50%;
+                left: 0;
+                transform: translateY(-50%);
+            }
+
+            .cursor::after {
+                width: 1px;
+                height: 100%;
+                left: 50%;
+                top: 0;
+                transform: translateX(-50%);
+            }
+
+            .cursor.hover {
+                width: 50px;
+                height: 50px;
+            }
+
+            .cursor.hover::before,
+            .cursor.hover::after {
+                background: var(--accent-purple);
+                transition: all 0.3s ease;
+            }
+
+            /* Hide the cursor-dot on desktop since we only want one cursor */
+            .cursor-dot {
+                display: none;
+            }
         }
 
-        .cursor::before,
-        .cursor::after {
-            content: '';
-            position: absolute;
-            background: var(--accent-neon);
-        }
-
-        .cursor::before {
-            width: 100%;
-            height: 1px;
-            top: 50%;
-            left: 0;
-            transform: translateY(-50%);
-        }
-
-        .cursor::after {
-            width: 1px;
-            height: 100%;
-            left: 50%;
-            top: 0;
-            transform: translateX(-50%);
-        }
-
-        .cursor-dot {
-            position: fixed;
-            width: 6px;
-            height: 6px;
-            background: var(--accent-neon);
-            border-radius: 50%;
-            pointer-events: none;
-            z-index: 9999;
-            transform: translate(-50%, -50%);
-            box-shadow: 0 0 10px var(--accent-neon);
-        }
-
-        .cursor.hover {
-            width: 50px;
-            height: 50px;
-        }
-
-        .cursor.hover::before,
-        .cursor.hover::after {
-            background: var(--accent-purple);
-            transition: all 0.3s ease;
+        /* Hide cursor elements on mobile */
+        @media (hover: none) and (pointer: coarse) {
+            .cursor,
+            .cursor-dot {
+                display: none !important;
+            }
+            
+            body {
+                cursor: auto;
+            }
         }
 
         /* Matrix Rain Background */
@@ -118,24 +127,13 @@
             align-items: center;
             justify-content: center;
             position: relative;
-            padding: 0 40px;
+            padding: 0 20px;
         }
 
         .hero-container {
             max-width: 1200px;
             width: 100%;
             position: relative;
-        }
-
-        .ascii-art {
-            font-family: 'Space Mono', monospace;
-            color: var(--accent-neon);
-            font-size: clamp(0.5rem, 1vw, 0.8rem);
-            line-height: 1.2;
-            white-space: pre;
-            margin-bottom: 40px;
-            opacity: 0.3;
-            text-align: center;
         }
 
         .hero-content {
@@ -145,7 +143,7 @@
         }
 
         .hero-title {
-            font-size: clamp(2.5rem, 8vw, 6rem);
+            font-size: clamp(2rem, 8vw, 6rem);
             font-weight: 800;
             line-height: 0.9;
             margin-bottom: 30px;
@@ -200,12 +198,14 @@
         }
 
         .hero-subtitle {
-            font-size: 1.2rem;
+            font-size: clamp(0.9rem, 2.5vw, 1.2rem);
             color: var(--text-secondary);
             margin-bottom: 40px;
             max-width: 800px;
             line-height: 1.8;
             font-family: 'Space Mono', monospace;
+            margin-left: auto;
+            margin-right: auto;
         }
 
         .status-indicator {
@@ -213,9 +213,11 @@
             align-items: center;
             gap: 10px;
             font-family: 'Space Mono', monospace;
-            font-size: 0.9rem;
+            font-size: clamp(0.7rem, 2vw, 0.9rem);
             color: var(--accent-neon);
             margin-bottom: 30px;
+            flex-wrap: wrap;
+            justify-content: center;
         }
 
         .status-dot {
@@ -225,6 +227,7 @@
             border-radius: 50%;
             animation: pulse 2s infinite;
             box-shadow: 0 0 20px var(--accent-neon);
+            flex-shrink: 0;
         }
 
         @keyframes pulse {
@@ -288,12 +291,12 @@
 
         /* Experience Timeline - Circuit Board Style */
         .experience {
-            padding: 100px 40px;
+            padding: 100px 20px;
             position: relative;
         }
 
         .section-title {
-            font-size: 3rem;
+            font-size: clamp(2rem, 6vw, 3rem);
             font-weight: 800;
             margin-bottom: 60px;
             position: relative;
@@ -422,7 +425,7 @@
 
         /* Projects - Holographic Cards */
         .projects {
-            padding: 100px 40px;
+            padding: 100px 20px;
             background: linear-gradient(180deg, var(--bg-primary) 0%, var(--bg-secondary) 100%);
         }
 
@@ -430,7 +433,7 @@
             max-width: 1200px;
             margin: 0 auto;
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 40px;
         }
 
@@ -524,7 +527,7 @@
 
         /* Contact - Terminal Interface */
         .contact {
-            padding: 100px 40px;
+            padding: 100px 20px;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -627,7 +630,7 @@
         }
 
         .contact-cards-section {
-            padding: 100px 40px;
+            padding: 100px 20px;
             background: var(--bg-secondary);
         }
 
@@ -638,7 +641,7 @@
         }
 
         .contact-subtitle {
-            font-size: 1.2rem;
+            font-size: clamp(1rem, 2.5vw, 1.2rem);
             color: var(--text-secondary);
             margin-bottom: 60px;
             font-family: 'Space Mono', monospace;
@@ -646,7 +649,7 @@
 
         .contact-cards-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
             gap: 30px;
             max-width: 1000px;
             margin: 0 auto;
@@ -708,34 +711,138 @@
             font-size: 0.9rem;
             color: var(--accent-neon);
             font-family: 'Space Mono', monospace;
+            word-break: break-word;
         }
 
-        /* Responsive */
+        /* Responsive Design */
         @media (max-width: 1024px) {
             .floating-stats {
                 position: static;
                 flex-direction: row;
                 justify-content: center;
                 margin-top: 40px;
-                flex-wrap: wrap; /* Allow stats to wrap on smaller screens */
+                flex-wrap: wrap;
+                gap: 15px;
+                width: 100%;
+                max-width: 100%;
+                transform: none;
+                right: auto;
+                top: auto;
             }
 
             .stat-card {
-                width: calc(50% - 15px); /* Two cards per row on medium screens */
+                width: calc(50% - 7.5px);
+                min-width: 180px;
+                max-width: 250px;
             }
 
             .timeline-node {
                 flex-direction: column !important;
-                margin-bottom: 60px; /* Adjust margin for stacked nodes */
+                margin-bottom: 60px;
             }
 
             .node-content {
-                width: 90%; /* Adjust width for mobile */
-                padding: 20px; /* Reduce padding */
+                width: 90%;
+                padding: 25px;
             }
 
             .node-content::before {
                 display: none;
+            }
+
+            .circuit-line {
+                left: 30px;
+            }
+
+            .circuit-dot {
+                left: 30px;
+                top: 20px;
+                transform: translateX(-50%);
+            }
+
+            .projects-container {
+                grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hero {
+                padding: 20px 15px;
+                min-height: 90vh;
+            }
+
+            .hero-container {
+                width: 100%;
+                max-width: 100%;
+                padding: 0;
+            }
+
+            .hero-content {
+                width: 100%;
+                max-width: 100%;
+                padding: 0 10px;
+            }
+
+            .hero-title {
+                font-size: clamp(1.8rem, 10vw, 3rem);
+                line-height: 1.1;
+                margin-bottom: 20px;
+                width: 100%;
+                max-width: 100%;
+            }
+
+            .hero-subtitle {
+                font-size: clamp(0.8rem, 3vw, 1rem);
+                line-height: 1.6;
+                margin-bottom: 30px;
+                padding: 0 10px;
+                width: 100%;
+                max-width: 100%;
+            }
+
+            .status-indicator {
+                font-size: clamp(0.6rem, 2.5vw, 0.8rem);
+                margin-bottom: 20px;
+                padding: 0 10px;
+                width: 100%;
+                max-width: 100%;
+                text-align: center;
+            }
+
+            .floating-stats {
+                flex-direction: column;
+                width: 100%;
+                gap: 15px;
+                margin-top: 30px;
+                padding: 0 15px;
+                max-width: 100%;
+                box-sizing: border-box;
+            }
+
+            .stat-card {
+                width: 100%;
+                max-width: 300px;
+                margin: 0 auto;
+                padding: 15px;
+                box-sizing: border-box;
+            }
+
+            .stat-value {
+                font-size: 1.5rem;
+            }
+
+            .experience, .projects, .contact, .contact-cards-section {
+                padding: 60px 15px;
+            }
+
+            .section-title {
+                font-size: clamp(1.5rem, 8vw, 2.5rem);
+                margin-bottom: 40px;
+                text-align: center;
+            }
+
+            .circuit-timeline {
+                padding-left: 40px;
             }
 
             .circuit-line {
@@ -744,63 +851,174 @@
 
             .circuit-dot {
                 left: 20px;
-                top: 0; /* Align dot to the top of the node */
-                transform: translateX(-50%);
             }
 
-            .section-title {
-                font-size: 2.5rem; /* Adjust font size for smaller screens */
-                margin-bottom: 40px;
+            .node-content {
+                width: 100%;
+                padding: 20px;
+                margin-left: 20px;
             }
 
-            .hero-subtitle {
-                font-size: 1rem; /* Adjust font size for mobile */
-            }
-        }
-
-        @media (max-width: 768px) {
-            .hero {
-                padding: 0 20px; /* Reduce padding on hero section */
+            .node-title {
+                font-size: 1.2rem;
             }
 
-            .hero-title {
-                font-size: 2.5rem; /* Further reduce font size for mobile */
+            .node-company {
+                font-size: 0.8rem;
             }
 
             .projects-container {
-                grid-template-columns: 1fr; /* Single column for projects on mobile */
+                grid-template-columns: 1fr;
+                gap: 30px;
             }
 
-            .floating-stats {
-                flex-direction: column;
-                width: 100%;
+            .project-card {
+                padding: 30px 20px;
             }
 
-            .stat-card {
-                width: 100%; /* Full width for stats on mobile */
+            .project-number {
+                font-size: 3rem;
+                top: 15px;
+                right: 15px;
+            }
+
+            .project-title {
+                font-size: 1.3rem;
+            }
+
+            .project-stats {
+                grid-template-columns: repeat(3, 1fr);
+                gap: 15px;
+            }
+
+            .project-stat-value {
+                font-size: 1rem;
+            }
+
+            .project-stat-label {
+                font-size: 0.7rem;
+            }
+
+            .terminal-container {
+                margin: 0 10px;
             }
 
             .terminal-body {
-                padding: 20px; /* Reduce padding in terminal */
+                padding: 20px 15px;
                 min-height: 300px;
+                font-size: 0.85rem;
             }
 
             .terminal-line {
                 margin-bottom: 15px;
             }
 
-            .contact-cards-grid {
-                grid-template-columns: 1fr; /* Single column for contact cards on mobile */
+            .terminal-output {
+                margin-left: 10px;
+                word-break: break-word;
             }
 
-            .contact-cards-section, .experience, .projects, .contact {
-                padding: 60px 20px; /* Adjust section padding */
+            .contact-cards-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .contact-card {
+                padding: 30px 20px;
+            }
+
+            .contact-card-info {
+                font-size: 0.8rem;
+            }
+
+            .tech-tags {
+                gap: 8px;
+            }
+
+            .tech-tag {
+                padding: 4px 12px;
+                font-size: 0.7rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero {
+                padding: 15px 10px;
+            }
+
+            .hero-container {
+                width: 100%;
+                max-width: 100%;
+                padding: 0;
+            }
+
+            .hero-content {
+                width: 100%;
+                max-width: 100%;
+                padding: 0 5px;
+            }
+
+            .hero-title {
+                font-size: clamp(1.5rem, 12vw, 2.5rem);
+                width: 100%;
+                max-width: 100%;
+            }
+
+            .hero-subtitle {
+                font-size: clamp(0.7rem, 3.5vw, 0.9rem);
+                padding: 0 5px;
+                width: 100%;
+                max-width: 100%;
+            }
+
+            .status-indicator {
+                font-size: clamp(0.5rem, 3vw, 0.7rem);
+                padding: 0 5px;
+                width: 100%;
+                max-width: 100%;
+            }
+
+            .floating-stats {
+                padding: 0 10px;
+                width: 100%;
+                max-width: 100%;
+                box-sizing: border-box;
+            }
+
+            .stat-card {
+                width: 100%;
+                max-width: 280px;
+                margin: 0 auto;
+                padding: 12px;
+                box-sizing: border-box;
+            }
+
+            .experience, .projects, .contact, .contact-cards-section {
+                padding: 40px 10px;
+            }
+
+            .node-content {
+                padding: 15px;
+                margin-left: 15px;
+            }
+
+            .project-card {
+                padding: 20px 15px;
+            }
+
+            .terminal-body {
+                padding: 15px 10px;
+                font-size: 0.8rem;
+            }
+
+            .contact-card {
+                padding: 25px 15px;
             }
         }
 
         /* Custom Scrollbar */
         ::-webkit-scrollbar {
-            width: 10px;
+            width: 8px;
         }
 
         ::-webkit-scrollbar-track {
@@ -809,7 +1027,7 @@
 
         ::-webkit-scrollbar-thumb {
             background: var(--accent-neon);
-            border-radius: 5px;
+            border-radius: 4px;
         }
 
         ::-webkit-scrollbar-thumb:hover {
@@ -824,9 +1042,8 @@
     </style>
 </head>
 <body>
-    <!-- Custom Cursor -->
+    <!-- Custom Cursor - Only shown on desktop -->
     <div class="cursor"></div>
-    <div class="cursor-dot"></div>
 
     <!-- Matrix Background -->
     <canvas id="matrix-bg"></canvas>
@@ -989,7 +1206,7 @@
                 <span class="project-number">03</span>
                 <h3 class="project-title">Crypto CEX Data Ingestion & Pipeline</h3>
                 <p class="project-description">
-                    Engineered robust data ingestion pipeline for high-frequency trading on centralised crypto exchanges. Parsed and normalised real-time order book and trade data from websockets.
+                    Engineered robust data ingestion pipeline for high-frequency trading on centralized crypto exchanges. Parsed and normalized real-time order book and trade data from low-latency websockets.
                 </p>
                 <div class="project-stats">
                     <div class="project-stat">
@@ -1001,7 +1218,7 @@
                         <span class="project-stat-label">Uptime</span>
                     </div>
                     <div class="project-stat">
-                        <span class="project-stat-value">multi</span>
+                        <span class="project-stat-value">10+</span>
                         <span class="project-stat-label">Exchanges</span>
                     </div>
                 </div>
@@ -1094,22 +1311,23 @@
     </section>
 
     <script>
-        // Custom Cursor
-        const cursor = document.querySelector('.cursor');
-        const cursorDot = document.querySelector('.cursor-dot');
+        // Custom Cursor - Only for desktop
+        if (window.matchMedia("(hover: hover) and (pointer: fine)").matches) {
+            const cursor = document.querySelector('.cursor');
 
-        document.addEventListener('mousemove', e => {
-            cursor.style.cssText = cursorDot.style.cssText = "left: " + e.clientX + "px; top: " + e.clientY + "px;";
-        });
+            document.addEventListener('mousemove', e => {
+                cursor.style.cssText = "left: " + e.clientX + "px; top: " + e.clientY + "px;";
+            });
 
-        document.querySelectorAll('a, button, .project-card, .contact-card, .tech-tag').forEach(el => {
-            el.addEventListener('mouseenter', () => {
-                cursor.classList.add('hover');
+            document.querySelectorAll('a, button, .project-card, .contact-card, .tech-tag').forEach(el => {
+                el.addEventListener('mouseenter', () => {
+                    cursor.classList.add('hover');
+                });
+                el.addEventListener('mouseleave', () => {
+                    cursor.classList.remove('hover');
+                });
             });
-            el.addEventListener('mouseleave', () => {
-                cursor.classList.remove('hover');
-            });
-        });
+        }
 
         // Matrix Rain Background
         const matrixCanvas = document.getElementById('matrix-bg');
@@ -1135,7 +1353,7 @@
             matrixCtx.fillStyle = 'rgba(0, 0, 0, 0.05)';
             matrixCtx.fillRect(0, 0, matrixCanvas.width, matrixCanvas.height);
 
-            matrixCtx.fillStyle = var_to_hex('--accent-neon'); // Neon green
+            matrixCtx.fillStyle = '#00ff88';
             matrixCtx.font = fontSize + 'px monospace';
 
             for (let i = 0; i < drops.length; i++) {
@@ -1223,11 +1441,6 @@
                 // Draw body
                 tradingCtx.fillRect(x, Math.min(candle.open, candle.close), candleWidth, Math.abs(candle.open - candle.close));
             }
-        }
-
-        // Helper to get CSS variable value
-        function var_to_hex(variable) {
-            return getComputedStyle(document.documentElement).getPropertyValue(variable).trim();
         }
 
         // Animation Loop
