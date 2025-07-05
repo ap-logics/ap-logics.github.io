@@ -108,51 +108,7 @@
             width: 100%;
             height: 100%;
             z-index: -1;
-            opacity: 0.3;
-        }
-
-        /* Navigation - Terminal Style */
-        nav {
-            position: fixed;
-            top: 20px;
-            right: 20px;
-            z-index: 1000;
-            background: rgba(20, 20, 20, 0.9);
-            border: 1px solid var(--accent-neon);
-            padding: 15px 20px;
-            font-family: 'Space Mono', monospace;
-            font-size: 0.9rem;
-            backdrop-filter: blur(10px);
-        }
-
-        nav::before {
-            content: "$ nav --list";
-            display: block;
-            color: var(--accent-neon);
-            margin-bottom: 10px;
-            font-size: 0.8rem;
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 20px;
-            list-style: none;
-        }
-
-        .nav-links a {
-            color: var(--text-secondary);
-            text-decoration: none;
-            transition: all 0.3s ease;
-            position: relative;
-        }
-
-        .nav-links a:hover {
-            color: var(--accent-neon);
-        }
-
-        .nav-links a::before {
-            content: "> ";
-            color: var(--accent-purple);
+            opacity: 0.25;
         }
 
         /* Hero Section - ASCII Art Style */
@@ -754,90 +710,6 @@
             font-family: 'Space Mono', monospace;
         }
 
-        .contact-cards-section {
-            padding: 100px 40px;
-            background: var(--bg-secondary);
-        }
-
-        .contact-cards-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            text-align: center;
-        }
-
-        .contact-subtitle {
-            font-size: 1.2rem;
-            color: var(--text-secondary);
-            margin-bottom: 60px;
-            font-family: 'Space Mono', monospace;
-        }
-
-        .contact-cards-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 30px;
-            max-width: 1000px;
-            margin: 0 auto;
-        }
-
-        .contact-card-link {
-            text-decoration: none;
-            color: inherit;
-        }
-
-        .contact-card {
-            background: rgba(20, 20, 20, 0.6);
-            border: 1px solid var(--border-color);
-            padding: 40px 30px;
-            border-radius: 0;
-            position: relative;
-            overflow: hidden;
-            transition: all 0.3s ease;
-            backdrop-filter: blur(10px);
-        }
-
-        .contact-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 2px;
-            background: var(--accent-neon);
-            transform: translateX(-100%);
-            transition: transform 0.3s ease;
-        }
-
-        .contact-card:hover::before {
-            transform: translateX(0);
-        }
-
-        .contact-card:hover {
-            transform: translateY(-5px);
-            border-color: var(--accent-neon);
-            box-shadow: 0 10px 30px rgba(0, 255, 136, 0.1);
-        }
-
-        .contact-icon {
-            font-size: 2.5rem;
-            margin-bottom: 20px;
-            display: block;
-        }
-
-        .contact-card-title {
-            font-size: 1.2rem;
-            font-weight: 600;
-            margin-bottom: 10px;
-            color: var(--text-primary);
-            font-family: 'Space Mono', monospace;
-        }
-
-        .contact-card-info {
-            font-size: 0.9rem;
-            color: var(--accent-neon);
-            font-family: 'Space Mono', monospace;
-        }
-
         /* Responsive */
         @media (max-width: 1024px) {
             .floating-stats {
@@ -845,14 +717,21 @@
                 flex-direction: row;
                 justify-content: center;
                 margin-top: 40px;
+                flex-wrap: wrap; /* Allow stats to wrap on smaller screens */
+            }
+
+            .stat-card {
+                width: calc(50% - 15px); /* Two cards per row on medium screens */
             }
 
             .timeline-node {
                 flex-direction: column !important;
+                margin-bottom: 60px; /* Adjust margin for stacked nodes */
             }
 
             .node-content {
-                width: 100%;
+                width: 90%; /* Adjust width for mobile */
+                padding: 20px; /* Reduce padding */
             }
 
             .node-content::before {
@@ -865,27 +744,31 @@
 
             .circuit-dot {
                 left: 20px;
+                top: 0; /* Align dot to the top of the node */
+                transform: translateX(-50%);
+            }
+
+            .section-title {
+                font-size: 2.5rem; /* Adjust font size for smaller screens */
+                margin-bottom: 40px;
+            }
+
+            .hero-subtitle {
+                font-size: 1rem; /* Adjust font size for mobile */
             }
         }
 
         @media (max-width: 768px) {
-            nav {
-                top: 10px;
-                right: 10px;
-                padding: 10px 15px;
-            }
-
-            .nav-links {
-                flex-direction: column;
-                gap: 10px;
+            .hero {
+                padding: 0 20px; /* Reduce padding on hero section */
             }
 
             .hero-title {
-                font-size: 3rem;
+                font-size: 2.5rem; /* Further reduce font size for mobile */
             }
 
             .projects-container {
-                grid-template-columns: 1fr;
+                grid-template-columns: 1fr; /* Single column for projects on mobile */
             }
 
             .floating-stats {
@@ -894,7 +777,24 @@
             }
 
             .stat-card {
-                width: 100%;
+                width: 100%; /* Full width for stats on mobile */
+            }
+
+            .terminal-body {
+                padding: 20px; /* Reduce padding in terminal */
+                min-height: 300px;
+            }
+
+            .terminal-line {
+                margin-bottom: 15px;
+            }
+
+            .contact-cards-grid {
+                grid-template-columns: 1fr; /* Single column for contact cards on mobile */
+            }
+
+            .contact-cards-section, .experience, .projects, .contact {
+                padding: 60px 20px; /* Adjust section padding */
             }
         }
 
@@ -933,16 +833,6 @@
     
     <!-- Trading Chart Background -->
     <canvas id="trading-bg"></canvas>
-
-    <!-- Navigation -->
-    <nav>
-        <ul class="nav-links">
-            <li><a href="#home">home</a></li>
-            <li><a href="#experience">experience</a></li>
-            <li><a href="#projects">projects</a></li>
-            <li><a href="#contact">contact</a></li>
-        </ul>
-    </nav>
 
     <!-- Hero Section -->
     <section id="home" class="hero">
@@ -1068,29 +958,29 @@
                     </div>
                     <div class="project-stat">
                         <span class="project-stat-value">6</span>
-                        <span class="project-stat-label">Strategies</span>
+                        <span class="project-stat-label">Rounds</span>
                     </div>
                 </div>
             </div>
 
             <div class="project-card">
                 <span class="project-number">02</span>
-                <h3 class="project-title">Automated Animation Publishing & VR System</h3>
+                <h3 class="project-title">Animations: Mocap - Roblox Game</h3>
                 <p class="project-description">
-                    Built CI/CD system that auto-converts Blender animations to Roblox rigs and deploys directly to production. Includes VR support with real-time motion sync and low-latency cross-platform interaction.
+                    Co-founded and scaled to 340M+ visits with significant revenue. Built real-time animation systems, VR compatibility, and optimized user conversion rates to 5x industry standards.
                 </p>
                 <div class="project-stats">
                     <div class="project-stat">
-                        <span class="project-stat-value">3M+</span>
-                        <span class="project-stat-label">MAU</span>
+                        <span class="project-stat-value">340M+</span>
+                        <span class="project-stat-label">Visits</span>
                     </div>
                     <div class="project-stat">
-                        <span class="project-stat-value">340M+</span>
-                        <span class="project-stat-label">Total Visits</span>
+                        <span class="project-stat-value">5x</span>
+                        <span class="project-stat-label">Conv. Rate</span>
                     </div>
                     <div class="project-stat">
                         <span class="project-stat-value">VR</span>
-                        <span class="project-stat-label">Cross-Device</span>
+                        <span class="project-stat-label">Compatible</span>
                     </div>
                 </div>
             </div>
@@ -1099,7 +989,7 @@
                 <span class="project-number">03</span>
                 <h3 class="project-title">Crypto CEX Data Ingestion & Pipeline</h3>
                 <p class="project-description">
-                    Engineered robust data ingestion pipeline for high-frequency trading on centralized crypto exchanges. Parsed and normalized real-time order book and trade data from low-latency websockets.
+                    Engineered robust data ingestion pipeline for high-frequency trading on centralised crypto exchanges. Parsed and normalised real-time order book and trade data from websockets.
                 </p>
                 <div class="project-stats">
                     <div class="project-stat">
@@ -1111,8 +1001,12 @@
                         <span class="project-stat-label">Uptime</span>
                     </div>
                     <div class="project-stat">
-                        <span class="project-stat-value">
-
+                        <span class="project-stat-value">multi</span>
+                        <span class="project-stat-label">Exchanges</span>
+                    </div>
+                </div>
+            </div>
+        </div>
     </section>
 
     <!-- Contact Terminal -->
@@ -1200,3 +1094,183 @@
     </section>
 
     <script>
+        // Custom Cursor
+        const cursor = document.querySelector('.cursor');
+        const cursorDot = document.querySelector('.cursor-dot');
+
+        document.addEventListener('mousemove', e => {
+            cursor.style.cssText = cursorDot.style.cssText = "left: " + e.clientX + "px; top: " + e.clientY + "px;";
+        });
+
+        document.querySelectorAll('a, button, .project-card, .contact-card, .tech-tag').forEach(el => {
+            el.addEventListener('mouseenter', () => {
+                cursor.classList.add('hover');
+            });
+            el.addEventListener('mouseleave', () => {
+                cursor.classList.remove('hover');
+            });
+        });
+
+        // Matrix Rain Background
+        const matrixCanvas = document.getElementById('matrix-bg');
+        const matrixCtx = matrixCanvas.getContext('2d');
+
+        matrixCanvas.width = window.innerWidth;
+        matrixCanvas.height = window.innerHeight;
+
+        const katakana = 'アァカサタナハマヤャラワガザダバパイィキシチニヒミリヰギジヂビピウゥクスツヌフムユュルグズヅブプエェケセテネヘメレヱゲゼデベペオォコソトノホモヨョロヲゴゾドボポヴッン';
+        const latin = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+        const nums = '0123456789';
+        const alphabet = katakana + latin + nums;
+
+        const fontSize = 16;
+        const columns = matrixCanvas.width / fontSize;
+        const drops = [];
+
+        for (let x = 0; x < columns; x++) {
+            drops[x] = 1;
+        }
+
+        function drawMatrix() {
+            matrixCtx.fillStyle = 'rgba(0, 0, 0, 0.05)';
+            matrixCtx.fillRect(0, 0, matrixCanvas.width, matrixCanvas.height);
+
+            matrixCtx.fillStyle = var_to_hex('--accent-neon'); // Neon green
+            matrixCtx.font = fontSize + 'px monospace';
+
+            for (let i = 0; i < drops.length; i++) {
+                const text = alphabet.charAt(Math.floor(Math.random() * alphabet.length));
+                matrixCtx.fillText(text, i * fontSize, drops[i] * fontSize);
+
+                if (drops[i] * fontSize > matrixCanvas.height && Math.random() > 0.975) {
+                    drops[i] = 0;
+                }
+                drops[i]++;
+            }
+        }
+
+        // Trading Chart Background
+        const tradingCanvas = document.getElementById('trading-bg');
+        const tradingCtx = tradingCanvas.getContext('2d');
+
+        tradingCanvas.width = window.innerWidth;
+        tradingCanvas.height = window.innerHeight;
+
+        const candleWidth = 12;
+        const candleSpacing = 8;
+        const numCandles = Math.floor(tradingCanvas.width / (candleWidth + candleSpacing));
+        
+        // Create array to store candle data
+        let candles = [];
+        let basePrice = tradingCanvas.height / 2;
+        let trend = 0.5; // Start neutral
+        let volatility = 30;
+
+        // Initialize with empty candles
+        for (let i = 0; i < numCandles; i++) {
+            candles.push(null);
+        }
+
+        function addNewCandle() {
+            // Create a more realistic price movement pattern
+            const trendChange = (Math.random() - 0.5) * 0.1;
+            trend = Math.max(-1, Math.min(1, trend + trendChange));
+            
+            const priceChange = trend * volatility + (Math.random() - 0.5) * volatility * 0.5;
+            basePrice = Math.max(tradingCanvas.height * 0.2, Math.min(tradingCanvas.height * 0.8, basePrice + priceChange));
+            
+            const open = basePrice + (Math.random() - 0.5) * 20;
+            const close = basePrice + (Math.random() - 0.5) * 20;
+            const high = Math.max(open, close) + Math.random() * 25;
+            const low = Math.min(open, close) - Math.random() * 25;
+
+            const newCandle = {
+                open: open,
+                close: close,
+                high: high,
+                low: low,
+                isBullish: close > open
+            };
+
+            // Shift all candles left and add new one at the end
+            candles.shift();
+            candles.push(newCandle);
+        }
+
+        function drawTradingChart() {
+            tradingCtx.clearRect(0, 0, tradingCanvas.width, tradingCanvas.height);
+
+            for (let i = 0; i < candles.length; i++) {
+                const candle = candles[i];
+                if (!candle) continue; // Skip empty candles
+
+                const x = i * (candleWidth + candleSpacing);
+                
+                // More visible but still subtle colors
+                const neonColor = 'rgba(0, 255, 136, 0.4)'; // More visible neon green
+                const purpleColor = 'rgba(153, 69, 255, 0.35)'; // More visible purple
+                
+                tradingCtx.fillStyle = candle.isBullish ? neonColor : purpleColor;
+                tradingCtx.strokeStyle = candle.isBullish ? neonColor : purpleColor;
+                tradingCtx.lineWidth = 2;
+
+                // Draw wick
+                tradingCtx.beginPath();
+                tradingCtx.moveTo(x + candleWidth / 2, candle.high);
+                tradingCtx.lineTo(x + candleWidth / 2, candle.low);
+                tradingCtx.stroke();
+
+                // Draw body
+                tradingCtx.fillRect(x, Math.min(candle.open, candle.close), candleWidth, Math.abs(candle.open - candle.close));
+            }
+        }
+
+        // Helper to get CSS variable value
+        function var_to_hex(variable) {
+            return getComputedStyle(document.documentElement).getPropertyValue(variable).trim();
+        }
+
+        // Animation Loop
+        let lastMatrixTime = 0;
+        let lastTradingTime = 0;
+        const matrixInterval = 50; // ms
+        const tradingInterval = 3000; // ms - Much slower updates
+
+        function animate(currentTime) {
+            if (currentTime - lastMatrixTime > matrixInterval) {
+                drawMatrix();
+                lastMatrixTime = currentTime;
+            }
+
+            if (currentTime - lastTradingTime > tradingInterval) {
+                addNewCandle(); // Add one new candle
+                drawTradingChart(); // Then redraw the chart
+                lastTradingTime = currentTime;
+            }
+            requestAnimationFrame(animate);
+        }
+
+        requestAnimationFrame(animate);
+
+        // Handle window resize
+        window.addEventListener('resize', () => {
+            matrixCanvas.width = window.innerWidth;
+            matrixCanvas.height = window.innerHeight;
+            tradingCanvas.width = window.innerWidth;
+            tradingCanvas.height = window.innerHeight;
+            
+            // Reinitialize candles array for new screen size
+            const newNumCandles = Math.floor(tradingCanvas.width / (candleWidth + candleSpacing));
+            candles = [];
+            for (let i = 0; i < newNumCandles; i++) {
+                candles.push(null);
+            }
+            
+            // Redraw immediately on resize
+            drawMatrix();
+            drawTradingChart();
+        });
+    </script>
+</body>
+</html>
+
