@@ -17,13 +17,13 @@
             --accent-primary: #3b82f6;
             --accent-secondary: #8b5cf6;
             --accent-tertiary: #06b6d4;
+            --accent-gold: #f59e0b;
             --text-primary: #ffffff;
             --text-secondary: #a1a1aa;
             --text-muted: #71717a;
             --card-bg: rgba(255, 255, 255, 0.02);
             --card-border: rgba(255, 255, 255, 0.1);
             --success-green: #10b981;
-            --warning-amber: #f59e0b;
             --grid-color: rgba(255, 255, 255, 0.02);
         }
 
@@ -122,7 +122,7 @@
             max-width: 1400px;
             margin: 0 auto;
             display: flex;
-            justify-content: space-between;
+            justify-content: center;
             align-items: center;
             padding: 0 2rem;
         }
@@ -271,7 +271,7 @@
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
             gap: 1.5rem;
             margin-top: 3rem;
-            max-width: 800px;
+            max-width: 1000px;
             margin-left: auto;
             margin-right: auto;
         }
@@ -768,6 +768,15 @@
             opacity: 1;
             transform: translateY(0);
         }
+
+        .timeline-description a {
+            color: #9cd3ff;
+            text-decoration: none;
+        }
+
+        .timeline-description a:hover {
+            color: #b3e5ff;
+        }
     </style>
 </head>
 <body>
@@ -779,13 +788,10 @@
     <!-- Navigation -->
     <nav>
         <div class="nav-container">
-            <a href="#" class="logo">AP</a>
             <ul class="nav-links">
                 <li><a href="#home">Home</a></li>
-                <li><a href="#about">About</a></li>
                 <li><a href="#experience">Experience</a></li>
                 <li><a href="#projects">Projects</a></li>
-                <li><a href="#skills">Skills</a></li>
                 <li><a href="#contact">Contact</a></li>
             </ul>
         </div>
@@ -797,69 +803,28 @@
             <div class="hero-content">
                 <div class="hero-badge">
                     <span class="status-dot"></span>
-                    Open to Opportunities
+                    open to new projects & opportunities
                 </div>
                 <h1 class="hero-title">
-                    Puzzle solver, mathematician, game developer<br>
+                    game developer & mathematician
                 </h1>
                 <p class="hero-subtitle">
-                    I'm a mathematics undergraduate at the University of Nottingham, making art, building games for millions
-                    and also happen to be building cryptocurrency high frequency trading infrastructure
+                    a mathematics undergrad at the University of Nottingham, experienced in quantitative trading,
+                    market making and building data ingestion systems. i nerd out in optimising complex systems for millions of players
+                    and also the markets.
+
+                    exploring opportunities in DeFi
                 </p>
-                
-                <div class="metric-cards">
-                    <div class="metric-card">
-                        <div class="metric-icon">🎮</div>
-                        <div class="metric-value">16K+</div>
-                        <div class="metric-label">Peak Concurrent Users</div>
-                    </div>
-                    <div class="metric-card">
-                        <div class="metric-icon">🏆</div>
-                        <div class="metric-value">Top 1%</div>
-                        <div class="metric-label">IMC Prosperity 2 Global Ranking</div>
-                    </div>
-                </div>
             </div>
-        </div>
-    </section>
-
-    <!-- About Section -->
-    <section id="about" class="section">
-        <div class="section-header reveal">
-            <h2 class="section-title">About Me</h2>
-            <p class="section-subtitle">
-                Bridging financial markets and digital innovation
-            </p>
-        </div>
-        
-        <div class="about-content">
-            <p class="about-text reveal">
-                I'm a Mathematics with Statistics student at the University of Nottingham, currently working as a 
-                Quantitative Research & Trading Intern at a high frequency trading firm. My storyspans from building 
-                a high revenue revenue Roblox game to developing sophisticated trading algorithms processing billions in volume.
-            </p>
-            
-            <p class="about-text reveal">
-                I thrive at the intersection of mathematics, technology, and finance - whether it's implementing 
-                delta-hedging pipelines, architecting VR motion-capture systems with sub-20ms latency, or competing 
-                in global trading challenges. My approach combines rigorous quantitative analysis with creative 
-                problem-solving honed through years of game development.
-            </p>
-
-            <p class="about-text reveal">
-                With spring insights from IMC Trading, D.E Shaw, Citadel Securities, SIG, and Flow Traders, 
-                I'm passionate about applying mathematical models to real-world problems and building systems 
-                that scale to millions of users.
-            </p>
         </div>
     </section>
 
     <!-- Experience Section -->
     <section id="experience" class="section">
         <div class="section-header reveal">
-            <h2 class="section-title">Professional Journey</h2>
+            <h2 class="section-title">experience</h2>
             <p class="section-subtitle">
-                From game economies to financial markets
+                from my bedroom, to a slightly bigger bedroom
             </p>
         </div>
         
@@ -868,17 +833,17 @@
                 <div class="timeline-dot"></div>
                 <div class="timeline-content">
                     <h3 class="timeline-title">Quantitative Research & Trading Intern</h3>
-                    <p class="timeline-company">cryptocurrency hft • Jun 2025 - Present • Remote, UK</p>
+                    <p class="timeline-company">Crypto HFT Firm • Jun 2025 - Present • Remote, UK</p>
                     <p class="timeline-description">
-                        Market-making spot/perpetual futures spreads across CEXs (OKX, Bybit), processing $10bn yearly volume. 
-                        Developed rate-aware delta-hedging pipelines with rho calibration and built multi-exchange data 
-                        collection frameworks handling millions of data points per minute.
+                        mm spot/perp futures across CEXs, contributing to systems processing $10bn in yearly volume.
+                        working on arbitrage bots & building grafana dashboards, as well as data ingestion pipelines
                     </p>
                     <div class="timeline-tags">
                         <span class="tag">Python</span>
                         <span class="tag">PostgreSQL</span>
                         <span class="tag">Grafana</span>
                         <span class="tag">Docker</span>
+                        <span class="tag">CI/CD</span>
                     </div>
                 </div>
             </div>
@@ -889,16 +854,41 @@
                     <h3 class="timeline-title">Lead Developer & Co-Founder</h3>
                     <p class="timeline-company">Animations: Mocap @ Roblox • Sep 2019 - Mar 2025 • London, UK</p>
                     <p class="timeline-description">
-                        Scaled game to 10k+ concurrent users and large revenues, ranking top 75 game of 2020. 
-                        Architected VR motion-capture pipeline with <20ms latency and achieved 7.02% pay-conversion 
-                        rate (5x industry median). Led cross-functional team and secured collaborations with 40+ influencers.
+                        my first flagship project, scaled to 340 million+ visits and multimillion $ revenue.
+                        architected real-time animation systems, as well as VR compatibility. using behavioural heuristics
+                        to optimise paying player conversions to 5x the industry median.
                     </p>
                     <div class="timeline-tags">
                         <span class="tag">Lua</span>
                         <span class="tag">TypeScript</span>
                         <span class="tag">Python</span>
                         <span class="tag">Azure PlayFab</span>
-                        <span class="tag">VR/AR</span>
+                        <span class="tag">CI/CD</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="timeline-item reveal">
+                <div class="timeline-dot"></div>
+                <div class="timeline-content">
+                    <h3 class="timeline-title">ui/ux design / design architect</h3>
+                    <p class="timeline-company">Freelance @ Roblox • Sep 2016 - Jun. 2023• London, UK</p>
+                    <p class="timeline-description">
+                        worked on a couple games as a designer, and they happened to accumulate many players,
+                        still use some of my design to this day, and still accumulate just as many players.
+
+                        <a href="https://www.roblox.com/games/5041144419/SCP-Roleplay" target="_blank">SCP: Roleplay</a>, 
+                        <a href="https://www.roblox.com/games/5938036553/FRONTLINES" target="_blank">FRONTLINES</a>, and 
+                        <a href="https://www.roblox.com/games/92604236/High-School-Life" target="_blank">High School Life</a>. 
+
+
+                    </p>
+                    <div class="timeline-tags">
+                        <span class="tag">Lua</span>
+                        <span class="tag">TypeScript</span>
+                        <span class="tag">Python</span>
+                        <span class="tag">Azure PlayFab</span>
+                        <span class="tag">CI/CD</span>
                     </div>
                 </div>
             </div>
@@ -908,207 +898,87 @@
     <!-- Projects Section -->
     <section id="projects" class="section">
         <div class="section-header reveal">
-            <h2 class="section-title">Key Achievements</h2>
+            <h2 class="section-title">projects, competitions & achievements</h2>
             <p class="section-subtitle">
-                Competition wins and innovative solutions
+                game development, competitions, internship projects
             </p>
         </div>
         
         <div class="projects-grid">
+
             <div class="project-card reveal">
-                <h3 class="project-title">IMC Prosperity Challenge 2024</h3>
+                <h3 class="project-title">IMC Prosperity 2 Trading Challenge</h3>
                 <p class="project-description">
-                    Achieved top 10 UK ranking and top 2% globally from 10,000+ competitors. 
-                    Implemented mean reversion and ETF arbitrage strategies to capture price 
-                    discrepancies across different markets and manage risk effectively.
+                    achieved top 1% global ranking from 10,000+ competitors in algorithmic trading competition. 
+                    implemented mean reversion and ETF arbitrage strategies, demonstrating advanced quantitative 
+                    modeling and risk management capabilities.
                 </p>
                 <div class="project-metrics">
                     <div class="project-metric">
-                        <div class="project-metric-value">Top 2%</div>
-                        <div class="project-metric-label">Global Rank</div>
+                        <div class="project-metric-value">top 1%</div>
+                        <div class="project-metric-label">rank</div>
                     </div>
                     <div class="project-metric">
                         <div class="project-metric-value">10,000+</div>
-                        <div class="project-metric-label">Competitors</div>
+                        <div class="project-metric-label">competitors</div>
+                    </div>
+                    <div class="project-metric">
+                        <div class="project-metric-value">6</div>
+                        <div class="project-metric-label">strategies</div>
                     </div>
                 </div>
             </div>
             
             <div class="project-card reveal">
-                <h3 class="project-title">Rotman Trading Challenge x Dublin</h3>
+                <h3 class="project-title">Automated Animation Publishing & VR System</h3>
                 <p class="project-description">
-                    Placed in top 10% with Virtu Financial sponsorship, generating $1M+ PnL with
-                    minimal exposure. Implemented momentum-based trading strategies using real-time 
-                    market data from RIT API and RTD links for profitable tender offer decisions.
+                    built CI/CD system that auto-converts blender animations to roblox rigs and deploys them 
+                    directly into production. including VR support, with real-time 
+                    motion sync and low-latency interaction across platforms.
                 </p>
                 <div class="project-metrics">
                     <div class="project-metric">
-                        <div class="project-metric-value">$1M+</div>
-                        <div class="project-metric-label">PnL Generated</div>
+                        <div class="project-metric-value">3M+</div>
+                        <div class="project-metric-label">MAU</div>
                     </div>
                     <div class="project-metric">
-                        <div class="project-metric-value">Top 10%</div>
-                        <div class="project-metric-label">Performance</div>
+                        <div class="project-metric-value">CI/CD</div>
+                        <div class="project-metric-label">Automated Deploy</div>
+                    </div>
+                    <div class="project-metric">
+                        <div class="project-metric-value">VR</div>
+                        <div class="project-metric-label">Cross-Device Support</div>
                     </div>
                 </div>
             </div>
             
             <div class="project-card reveal">
-                <h3 class="project-title">VR Motion Capture System</h3>
+                <h3 class="project-title">Crypto CEX Data Ingestion & Pipeline</h3>
                 <p class="project-description">
-                    Architected innovative VR pipeline streaming live headset/controller vectors into 
-                    Roblox animations. Enabled real-time dance performances for 100K+ concurrent users 
-                    with ultra-low latency, revolutionizing social gaming experiences.
+                    Engineered robust data ingestion pipeline for high-frequency trading on centralised crypto exchanges. 
+                    Parsed and normalized real-time order book and trade data from low-latency websockets, supporting 
+                    internal analytics and signal generation systems.
                 </p>
-                <div class="project-metrics">
-                    <div class="project-metric">
-                        <div class="project-metric-value">&lt;20ms</div>
-                        <div class="project-metric-label">Latency</div>
-                    </div>
-                    <div class="project-metric">
-                        <div class="project-metric-value">100K+</div>
-                        <div class="project-metric-label">Live Users</div>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="project-card reveal">
-                <h3 class="project-title">Multi-Exchange Arbitrage System</h3>
-                <p class="project-description">
-                    Built automated detection system analyzing spread products vs contributing contracts, 
-                    identifying opportunities through market events. Processes millions of data points 
-                    per minute across multiple cryptocurrency exchanges.
-                </p>
-                <div class="project-metrics">
-                    <div class="project-metric">
-                        <div class="project-metric-value">$10B</div>
-                        <div class="project-metric-label">Yearly Volume</div>
-                    </div>
-                    <div class="project-metric">
-                        <div class="project-metric-value">1M+</div>
-                        <div class="project-metric-label">Data Points/min</div>
-                    </div>
-                </div>
             </div>
         </div>
     </section>
 
-    <!-- Skills Section -->
-    <section id="skills" class="section">
-        <div class="section-header reveal">
-            <h2 class="section-title">Technical Proficiencies</h2>
-            <p class="section-subtitle">
-                Languages, frameworks, and domain expertise
-            </p>
-        </div>
-        
-        <div class="skills-container">
-            <div class="skill-category reveal">
-                <h3 class="skill-category-title">
-                    <span>💻</span> Programming Languages
-                </h3>
-                <div class="skill-item">
-                    <span>Python</span>
-                    <div class="skill-bar">
-                        <div class="skill-progress" style="width: 95%;"></div>
-                    </div>
-                </div>
-                <div class="skill-item">
-                    <span>JavaScript/TypeScript</span>
-                    <div class="skill-bar">
-                        <div class="skill-progress" style="width: 90%;"></div>
-                    </div>
-                </div>
-                <div class="skill-item">
-                    <span>Lua</span>
-                    <div class="skill-bar">
-                        <div class="skill-progress" style="width: 95%;"></div>
-                    </div>
-                </div>
-                <div class="skill-item">
-                    <span>Rust</span>
-                    <div class="skill-bar">
-                        <div class="skill-progress" style="width: 70%;"></div>
-                    </div>
-                </div>
-                <div class="skill-item">
-                    <span>C#</span>
-                    <div class="skill-bar">
-                        <div class="skill-progress" style="width: 75%;"></div>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="skill-category reveal">
-                <h3 class="skill-category-title">
-                    <span>📈</span> Trading & Finance, Mathematics
-                </h3>
-                <div class="skill-item">
-                    <span>Market Making</span>
-                    <div class="skill-bar">
-                        <div class="skill-progress" style="width: 85%;"></div>
-                    </div>
-                </div>
-                <div class="skill-item">
-                    <span>Statistical Analysis</span>
-                    <div class="skill-bar">
-                        <div class="skill-progress" style="width: 90%;"></div>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="skill-category reveal">
-                <h3 class="skill-category-title">
-                    <span>🛠️</span> Tools & Technologies
-                </h3>
-                <div class="skill-item">
-                    <span>PostgreSQL</span>
-                    <div class="skill-bar">
-                        <div class="skill-progress" style="width: 85%;"></div>
-                    </div>
-                </div>
-                <div class="skill-item">
-                    <span>Docker</span>
-                    <div class="skill-bar">
-                        <div class="skill-progress" style="width: 80%;"></div>
-                    </div>
-                </div>
-                <div class="skill-item">
-                    <span>Grafana</span>
-                    <div class="skill-bar">
-                        <div class="skill-progress" style="width: 75%;"></div>
-                    </div>
-                </div>
-                <div class="skill-item">
-                    <span>Azure PlayFab</span>
-                    <div class="skill-bar">
-                        <div class="skill-progress" style="width: 90%;"></div>
-                    </div>
-                </div>
-                <div class="skill-item">
-                    <span>Pandas/NumPy</span>
-                    <div class="skill-bar">
-                        <div class="skill-progress" style="width: 95%;"></div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+
 
     <!-- Contact Section -->
     <section id="contact" class="section">
         <div class="section-header reveal">
             <h2 class="section-title">Get In Touch</h2>
             <p class="section-subtitle">
-                Let's discuss quantitative trading and innovative tech opportunities
+                open to any opportunities, quant finance, swe, game development
             </p>
         </div>
         
         <div class="contact-container">
             <p style="font-size: 1.2rem; line-height: 1.8; color: var(--text-secondary); margin-bottom: 3rem;" class="reveal">
-                Currently seeking summer internships in quantitative trading, research, and development. 
-                With spring insights from leading trading firms, I'm excited to contribute to cutting-edge 
-                financial technology and build systems that scale.
+                Currently seeking opportunities in quantitative trading, research, and development. 
+                With spring insights from leading trading firms and proven experience in building 
+                scalable financial systems, I'm excited to contribute to cutting-edge fintech solutions.
             </p>
             
             <div class="contact-grid">
@@ -1124,11 +994,11 @@
                     <div class="contact-icon">💼</div>
                     <div>
                         <div class="contact-title">Business Email</div>
-                        <div class="contact-info">parekhbiz@outlook.com</div>
+                        <div class="contact-info">aayushparekh@proton.me</div>
                     </div>
                 </a>
                 
-                <a href="https://linkedin.com/in/aayush" target="_blank" class="contact-card reveal">
+                <a href="https://linkedin.com/in/parekhaayush" target="_blank" class="contact-card reveal">
                     <div class="contact-icon">🔗</div>
                     <div>
                         <div class="contact-title">LinkedIn</div>
@@ -1136,17 +1006,17 @@
                     </div>
                 </a>
                 
-                <a href="https://github.com/aayush" target="_blank" class="contact-card reveal">
+                <a href="https://github.com/ap-logics" target="_blank" class="contact-card reveal">
                     <div class="contact-icon">💻</div>
                     <div>
                         <div class="contact-title">GitHub</div>
-                        <div class="contact-info">github.com/aayush</div>
+                        <div class="contact-info">github.com/ap-logics</div>
                     </div>
                 </a>
             </div>
             
             <div style="margin-top: 3rem; padding: 2rem; background: var(--card-bg); border: 1px solid var(--card-border); border-radius: 20px;" class="reveal">
-                <h3 style="font-size: 1.3rem; margin-bottom: 1rem; color: var(--accent-primary);">Spring Insights & Awards</h3>
+                <h3 style="font-size: 1.3rem; margin-bottom: 1rem; color: var(--accent-primary);">Spring Insights & Recognition</h3>
                 <p style="color: var(--text-secondary); line-height: 1.8;">
                     Invited to spring insight programs at <strong>IMC Trading</strong>, <strong>D.E Shaw</strong>, 
                     <strong>Citadel Securities</strong>, <strong>SIG</strong>, and <strong>Flow Traders</strong>. 
@@ -1158,7 +1028,7 @@
 
     <!-- Footer -->
     <footer>
-        <p>&copy; 2025 Aayush Parekh. Building the future of quantitative finance and technology.</p>
+        <p>&copy; 2025 Aayush Parekh. All rights reserved.</p>
     </footer>
 
     <script>
@@ -1245,44 +1115,6 @@
             skillObserver.observe(bar);
         });
 
-        // Dynamic metric counters
-        const animateValue = (element, start, end, duration, prefix = '', suffix = '') => {
-            let startTimestamp = null;
-            const step = (timestamp) => {
-                if (!startTimestamp) startTimestamp = timestamp;
-                const progress = Math.min((timestamp - startTimestamp) / duration, 1);
-                const currentValue = Math.floor(progress * (end - start) + start);
-                element.textContent = prefix + currentValue + suffix;
-                if (progress < 1) {
-                    window.requestAnimationFrame(step);
-                }
-            };
-            window.requestAnimationFrame(step);
-        };
-
-        // Set up metric animations
-        const setupMetricAnimations = () => {
-            const metricElements = document.querySelectorAll('.metric-value');
-            metricElements.forEach(element => {
-                const text = element.textContent;
-                const observer = new IntersectionObserver((entries) => {
-                    entries.forEach(entry => {
-                        if (entry.isIntersecting) {
-                            if (text === '$10B') {
-                                animateValue(element, 0, 10, 2000, '', 'B');
-                            } else if (text === '100K') {
-                                animateValue(element, 0, 100, 2000, '', 'K');
-                            }
-                            observer.unobserve(entry.target);
-                        }
-                    });
-                });
-                observer.observe(element);
-            });
-        };
-
-        setupMetricAnimations();
-
         // Add hover tilt effect to cards
         const cards = document.querySelectorAll('.project-card, .metric-card, .contact-card');
         
@@ -1316,3 +1148,4 @@
     </script>
 </body>
 </html>
+
