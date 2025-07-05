@@ -3,37 +3,1316 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Aayush Parekh - Portfolio</title>
+    <title>parekh</title>
     <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-bg: #0a0a0a;
+            --secondary-bg: #111111;
+            --accent-primary: #3b82f6;
+            --accent-secondary: #8b5cf6;
+            --accent-tertiary: #06b6d4;
+            --text-primary: #ffffff;
+            --text-secondary: #a1a1aa;
+            --text-muted: #71717a;
+            --card-bg: rgba(255, 255, 255, 0.02);
+            --card-border: rgba(255, 255, 255, 0.1);
+            --success-green: #10b981;
+            --warning-amber: #f59e0b;
+            --grid-color: rgba(255, 255, 255, 0.02);
+        }
+
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: var(--primary-bg);
+            color: var(--text-primary);
             line-height: 1.6;
-            margin: 20px;
-            background-color: #f4f4f4;
-            color: #333;
+            overflow-x: hidden;
+            position: relative;
         }
-        .container {
-            max-width: 800px;
-            margin: auto;
-            background: #fff;
-            padding: 30px;
+
+        /* Animated background */
+        .background-animation {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background: 
+                radial-gradient(circle at 20% 50%, rgba(59, 130, 246, 0.08) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(139, 92, 246, 0.08) 0%, transparent 50%),
+                radial-gradient(circle at 40% 20%, rgba(6, 182, 212, 0.08) 0%, transparent 50%),
+                var(--primary-bg);
+        }
+
+        /* Grid overlay */
+        .grid-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                linear-gradient(var(--grid-color) 1px, transparent 1px),
+                linear-gradient(90deg, var(--grid-color) 1px, transparent 1px);
+            background-size: 50px 50px;
+            z-index: -1;
+            opacity: 0.5;
+        }
+
+        /* Animated particles */
+        .particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+        }
+
+        .particle {
+            position: absolute;
+            width: 3px;
+            height: 3px;
+            background: var(--accent-primary);
+            border-radius: 50%;
+            opacity: 0;
+            animation: float-particle 20s infinite;
+        }
+
+        @keyframes float-particle {
+            0% {
+                opacity: 0;
+                transform: translateY(100vh) scale(0);
+            }
+            10% {
+                opacity: 0.5;
+                transform: translateY(90vh) scale(1);
+            }
+            90% {
+                opacity: 0.5;
+                transform: translateY(10vh) scale(1);
+            }
+            100% {
+                opacity: 0;
+                transform: translateY(0) scale(0);
+            }
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(10, 10, 10, 0.8);
+            backdrop-filter: blur(20px);
+            z-index: 1000;
+            padding: 1.5rem 0;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            border-bottom: 1px solid var(--card-border);
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+        }
+
+        .logo {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            text-decoration: none;
+            letter-spacing: -0.02em;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .logo::before {
+            content: '';
+            width: 30px;
+            height: 30px;
+            background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
             border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
-        h1 {
-            color: #0056b3;
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2.5rem;
         }
-        p {
-            margin-bottom: 10px;
+
+        .nav-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.95rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent-primary);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--accent-primary);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding: 0 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            width: 100%;
+            text-align: center;
+        }
+
+        .hero-content {
+            z-index: 10;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: rgba(59, 130, 246, 0.1);
+            border: 1px solid rgba(59, 130, 246, 0.3);
+            padding: 0.6rem 1.2rem;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            color: var(--accent-primary);
+            margin-bottom: 2rem;
+            animation: fadeInUp 0.8s ease-out;
+        }
+
+        .status-dot {
+            width: 8px;
+            height: 8px;
+            background: var(--success-green);
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.4); }
+            50% { opacity: 0.8; box-shadow: 0 0 0 8px rgba(16, 185, 129, 0); }
+        }
+
+        .hero-title {
+            font-size: clamp(3rem, 6vw, 5rem);
+            font-weight: 800;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+            letter-spacing: -0.03em;
+            background: linear-gradient(135deg, var(--text-primary) 0%, var(--accent-primary) 50%, var(--accent-secondary) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: fadeInUp 0.8s ease-out 0.2s both;
+        }
+
+        .hero-subtitle {
+            font-size: 1.3rem;
+            color: var(--text-secondary);
+            margin-bottom: 3rem;
+            line-height: 1.6;
+            animation: fadeInUp 0.8s ease-out 0.4s both;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Metric Cards */
+        .metric-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-top: 3rem;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .metric-card {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 20px;
+            padding: 2rem;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            animation: fadeInUp 0.8s ease-out 0.6s both;
+        }
+
+        .metric-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, var(--accent-primary) 0%, transparent 70%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .metric-card:hover::before {
+            opacity: 0.05;
+        }
+
+        .metric-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(59, 130, 246, 0.5);
+            box-shadow: 0 10px 40px rgba(59, 130, 246, 0.1);
+        }
+
+        .metric-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .metric-value {
+            font-size: 2.5rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 0.5rem;
+            font-family: 'SF Mono', monospace;
+        }
+
+        .metric-label {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        /* Section styling */
+        .section {
+            padding: 100px 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-title {
+            font-size: 3rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            letter-spacing: -0.02em;
+            background: linear-gradient(135deg, var(--text-primary), var(--accent-primary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .section-subtitle {
+            font-size: 1.2rem;
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* About Section */
+        .about-content {
+            max-width: 900px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .about-text {
+            font-size: 1.2rem;
+            line-height: 1.8;
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+        }
+
+        /* Experience Timeline */
+        .timeline {
+            position: relative;
+            padding: 2rem 0;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: linear-gradient(180deg, var(--accent-primary), var(--accent-secondary));
+            transform: translateX(-50%);
+        }
+
+        .timeline-item {
+            position: relative;
+            width: 50%;
+            padding: 2rem;
+        }
+
+        .timeline-item:nth-child(odd) {
+            left: 0;
+            text-align: right;
+            padding-right: 4rem;
+        }
+
+        .timeline-item:nth-child(even) {
+            left: 50%;
+            padding-left: 4rem;
+        }
+
+        .timeline-dot {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background: var(--accent-primary);
+            border: 4px solid var(--primary-bg);
+            border-radius: 50%;
+            top: 2rem;
+            z-index: 10;
+        }
+
+        .timeline-item:nth-child(odd) .timeline-dot {
+            right: -10px;
+        }
+
+        .timeline-item:nth-child(even) .timeline-dot {
+            left: -10px;
+        }
+
+        .timeline-content {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 20px;
+            padding: 2rem;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+        }
+
+        .timeline-content:hover {
+            transform: scale(1.02);
+            border-color: rgba(59, 130, 246, 0.3);
+            box-shadow: 0 10px 40px rgba(59, 130, 246, 0.1);
+        }
+
+        .timeline-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: var(--accent-primary);
+        }
+
+        .timeline-company {
+            color: var(--text-secondary);
+            margin-bottom: 1rem;
+        }
+
+        .timeline-description {
+            color: var(--text-secondary);
+            line-height: 1.6;
+            margin-bottom: 1rem;
+        }
+
+        .timeline-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            justify-content: flex-end;
+        }
+
+        .timeline-item:nth-child(even) .timeline-tags {
+            justify-content: flex-start;
+        }
+
+        .tag {
+            background: rgba(59, 130, 246, 0.1);
+            color: var(--accent-primary);
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            border: 1px solid rgba(59, 130, 246, 0.2);
+        }
+
+        /* Projects Grid */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 2rem;
+        }
+
+        .project-card {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 20px;
+            padding: 2.5rem;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            backdrop-filter: blur(10px);
+            cursor: pointer;
+        }
+
+        .project-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, transparent, rgba(59, 130, 246, 0.05));
+            transform: translateX(-100%);
+            transition: transform 0.6s ease;
+        }
+
+        .project-card:hover::before {
+            transform: translateX(0);
+        }
+
+        .project-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(59, 130, 246, 0.15);
+        }
+
+        .project-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: var(--text-primary);
+        }
+
+        .project-description {
+            color: var(--text-secondary);
+            line-height: 1.7;
+            margin-bottom: 1.5rem;
+        }
+
+        .project-metrics {
+            display: flex;
+            gap: 2rem;
+            margin-top: 1.5rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid var(--card-border);
+        }
+
+        .project-metric {
+            display: flex;
+            flex-direction: column;
+            gap: 0.3rem;
+        }
+
+        .project-metric-value {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--accent-primary);
+            font-family: 'SF Mono', monospace;
+        }
+
+        .project-metric-label {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        /* Skills Visualization */
+        .skills-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .skill-category {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 20px;
+            padding: 2rem;
+            backdrop-filter: blur(10px);
+        }
+
+        .skill-category-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            color: var(--accent-primary);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .skill-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 1rem;
+        }
+
+        .skill-bar {
+            flex: 1;
+            height: 8px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 4px;
+            margin-left: 1rem;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .skill-progress {
+            height: 100%;
+            background: linear-gradient(90deg, var(--accent-primary), var(--accent-secondary));
+            border-radius: 4px;
+            transition: width 1s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .skill-progress::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            animation: shimmer 2s infinite;
+        }
+
+        @keyframes shimmer {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+
+        /* Contact Section */
+        .contact-container {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.5rem;
+            margin-top: 3rem;
+        }
+
+        .contact-card {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 20px;
+            padding: 2rem;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            text-decoration: none;
+            color: inherit;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .contact-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(59, 130, 246, 0.3);
+            box-shadow: 0 10px 40px rgba(59, 130, 246, 0.1);
+        }
+
+        .contact-icon {
+            font-size: 2.5rem;
+        }
+
+        .contact-title {
+            font-weight: 600;
+            margin-bottom: 0.3rem;
+        }
+
+        .contact-info {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 3rem 2rem;
+            color: var(--text-muted);
+            border-top: 1px solid var(--card-border);
+            background: var(--card-bg);
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .timeline-item {
+                width: 100%;
+                left: 0 !important;
+                padding-left: 4rem !important;
+                padding-right: 2rem !important;
+                text-align: left !important;
+            }
+
+            .timeline::before {
+                left: 20px;
+            }
+
+            .timeline-dot {
+                left: 10px !important;
+                right: auto !important;
+            }
+
+            .timeline-tags {
+                justify-content: flex-start !important;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .hero-title {
+                font-size: 2.5rem;
+            }
+
+            .metric-cards {
+                grid-template-columns: 1fr;
+            }
+
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .contact-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .skills-container {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--secondary-bg);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(180deg, var(--accent-primary), var(--accent-secondary));
+            border-radius: 4px;
+        }
+
+        /* Scroll animations */
+        .reveal {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <h1>Welcome to Aayush Parekh's Portfolio!</h1>
-        <p>This is the beginning of my professional online presence.</p>
-        <p>Stay tuned for exciting projects and updates.</p>
-        <p>You can find my GitHub profile <a href="https://github.com/ap-logics" target="_blank">here</a>.</p>
-    </div>
+    <!-- Background elements -->
+    <div class="background-animation"></div>
+    <div class="grid-overlay"></div>
+    <div class="particles" id="particles"></div>
+
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <a href="#" class="logo">AP</a>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#experience">Experience</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-container">
+            <div class="hero-content">
+                <div class="hero-badge">
+                    <span class="status-dot"></span>
+                    Open to Opportunities
+                </div>
+                <h1 class="hero-title">
+                    Puzzle solver, mathematician, game developer<br>
+                </h1>
+                <p class="hero-subtitle">
+                    I'm a mathematics undergraduate at the University of Nottingham, making art, building games for millions
+                    and also happen to be building cryptocurrency high frequency trading infrastructure
+                </p>
+                
+                <div class="metric-cards">
+                    <div class="metric-card">
+                        <div class="metric-icon">🎮</div>
+                        <div class="metric-value">16K+</div>
+                        <div class="metric-label">Peak Concurrent Users</div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-icon">🏆</div>
+                        <div class="metric-value">Top 1%</div>
+                        <div class="metric-label">IMC Prosperity 2 Global Ranking</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="section">
+        <div class="section-header reveal">
+            <h2 class="section-title">About Me</h2>
+            <p class="section-subtitle">
+                Bridging financial markets and digital innovation
+            </p>
+        </div>
+        
+        <div class="about-content">
+            <p class="about-text reveal">
+                I'm a Mathematics with Statistics student at the University of Nottingham, currently working as a 
+                Quantitative Research & Trading Intern at a high frequency trading firm. My storyspans from building 
+                a high revenue revenue Roblox game to developing sophisticated trading algorithms processing billions in volume.
+            </p>
+            
+            <p class="about-text reveal">
+                I thrive at the intersection of mathematics, technology, and finance - whether it's implementing 
+                delta-hedging pipelines, architecting VR motion-capture systems with sub-20ms latency, or competing 
+                in global trading challenges. My approach combines rigorous quantitative analysis with creative 
+                problem-solving honed through years of game development.
+            </p>
+
+            <p class="about-text reveal">
+                With spring insights from IMC Trading, D.E Shaw, Citadel Securities, SIG, and Flow Traders, 
+                I'm passionate about applying mathematical models to real-world problems and building systems 
+                that scale to millions of users.
+            </p>
+        </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section id="experience" class="section">
+        <div class="section-header reveal">
+            <h2 class="section-title">Professional Journey</h2>
+            <p class="section-subtitle">
+                From game economies to financial markets
+            </p>
+        </div>
+        
+        <div class="timeline">
+            <div class="timeline-item reveal">
+                <div class="timeline-dot"></div>
+                <div class="timeline-content">
+                    <h3 class="timeline-title">Quantitative Research & Trading Intern</h3>
+                    <p class="timeline-company">cryptocurrency hft • Jun 2025 - Present • Remote, UK</p>
+                    <p class="timeline-description">
+                        Market-making spot/perpetual futures spreads across CEXs (OKX, Bybit), processing $10bn yearly volume. 
+                        Developed rate-aware delta-hedging pipelines with rho calibration and built multi-exchange data 
+                        collection frameworks handling millions of data points per minute.
+                    </p>
+                    <div class="timeline-tags">
+                        <span class="tag">Python</span>
+                        <span class="tag">PostgreSQL</span>
+                        <span class="tag">Grafana</span>
+                        <span class="tag">Docker</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="timeline-item reveal">
+                <div class="timeline-dot"></div>
+                <div class="timeline-content">
+                    <h3 class="timeline-title">Lead Developer & Co-Founder</h3>
+                    <p class="timeline-company">Animations: Mocap @ Roblox • Sep 2019 - Mar 2025 • London, UK</p>
+                    <p class="timeline-description">
+                        Scaled game to 10k+ concurrent users and large revenues, ranking top 75 game of 2020. 
+                        Architected VR motion-capture pipeline with <20ms latency and achieved 7.02% pay-conversion 
+                        rate (5x industry median). Led cross-functional team and secured collaborations with 40+ influencers.
+                    </p>
+                    <div class="timeline-tags">
+                        <span class="tag">Lua</span>
+                        <span class="tag">TypeScript</span>
+                        <span class="tag">Python</span>
+                        <span class="tag">Azure PlayFab</span>
+                        <span class="tag">VR/AR</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="section">
+        <div class="section-header reveal">
+            <h2 class="section-title">Key Achievements</h2>
+            <p class="section-subtitle">
+                Competition wins and innovative solutions
+            </p>
+        </div>
+        
+        <div class="projects-grid">
+            <div class="project-card reveal">
+                <h3 class="project-title">IMC Prosperity Challenge 2024</h3>
+                <p class="project-description">
+                    Achieved top 10 UK ranking and top 2% globally from 10,000+ competitors. 
+                    Implemented mean reversion and ETF arbitrage strategies to capture price 
+                    discrepancies across different markets and manage risk effectively.
+                </p>
+                <div class="project-metrics">
+                    <div class="project-metric">
+                        <div class="project-metric-value">Top 2%</div>
+                        <div class="project-metric-label">Global Rank</div>
+                    </div>
+                    <div class="project-metric">
+                        <div class="project-metric-value">10,000+</div>
+                        <div class="project-metric-label">Competitors</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="project-card reveal">
+                <h3 class="project-title">Rotman Trading Challenge x Dublin</h3>
+                <p class="project-description">
+                    Placed in top 10% with Virtu Financial sponsorship, generating $1M+ PnL with
+                    minimal exposure. Implemented momentum-based trading strategies using real-time 
+                    market data from RIT API and RTD links for profitable tender offer decisions.
+                </p>
+                <div class="project-metrics">
+                    <div class="project-metric">
+                        <div class="project-metric-value">$1M+</div>
+                        <div class="project-metric-label">PnL Generated</div>
+                    </div>
+                    <div class="project-metric">
+                        <div class="project-metric-value">Top 10%</div>
+                        <div class="project-metric-label">Performance</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="project-card reveal">
+                <h3 class="project-title">VR Motion Capture System</h3>
+                <p class="project-description">
+                    Architected innovative VR pipeline streaming live headset/controller vectors into 
+                    Roblox animations. Enabled real-time dance performances for 100K+ concurrent users 
+                    with ultra-low latency, revolutionizing social gaming experiences.
+                </p>
+                <div class="project-metrics">
+                    <div class="project-metric">
+                        <div class="project-metric-value">&lt;20ms</div>
+                        <div class="project-metric-label">Latency</div>
+                    </div>
+                    <div class="project-metric">
+                        <div class="project-metric-value">100K+</div>
+                        <div class="project-metric-label">Live Users</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="project-card reveal">
+                <h3 class="project-title">Multi-Exchange Arbitrage System</h3>
+                <p class="project-description">
+                    Built automated detection system analyzing spread products vs contributing contracts, 
+                    identifying opportunities through market events. Processes millions of data points 
+                    per minute across multiple cryptocurrency exchanges.
+                </p>
+                <div class="project-metrics">
+                    <div class="project-metric">
+                        <div class="project-metric-value">$10B</div>
+                        <div class="project-metric-label">Yearly Volume</div>
+                    </div>
+                    <div class="project-metric">
+                        <div class="project-metric-value">1M+</div>
+                        <div class="project-metric-label">Data Points/min</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="section">
+        <div class="section-header reveal">
+            <h2 class="section-title">Technical Proficiencies</h2>
+            <p class="section-subtitle">
+                Languages, frameworks, and domain expertise
+            </p>
+        </div>
+        
+        <div class="skills-container">
+            <div class="skill-category reveal">
+                <h3 class="skill-category-title">
+                    <span>💻</span> Programming Languages
+                </h3>
+                <div class="skill-item">
+                    <span>Python</span>
+                    <div class="skill-bar">
+                        <div class="skill-progress" style="width: 95%;"></div>
+                    </div>
+                </div>
+                <div class="skill-item">
+                    <span>JavaScript/TypeScript</span>
+                    <div class="skill-bar">
+                        <div class="skill-progress" style="width: 90%;"></div>
+                    </div>
+                </div>
+                <div class="skill-item">
+                    <span>Lua</span>
+                    <div class="skill-bar">
+                        <div class="skill-progress" style="width: 95%;"></div>
+                    </div>
+                </div>
+                <div class="skill-item">
+                    <span>Rust</span>
+                    <div class="skill-bar">
+                        <div class="skill-progress" style="width: 70%;"></div>
+                    </div>
+                </div>
+                <div class="skill-item">
+                    <span>C#</span>
+                    <div class="skill-bar">
+                        <div class="skill-progress" style="width: 75%;"></div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="skill-category reveal">
+                <h3 class="skill-category-title">
+                    <span>📈</span> Trading & Finance, Mathematics
+                </h3>
+                <div class="skill-item">
+                    <span>Market Making</span>
+                    <div class="skill-bar">
+                        <div class="skill-progress" style="width: 85%;"></div>
+                    </div>
+                </div>
+                <div class="skill-item">
+                    <span>Statistical Analysis</span>
+                    <div class="skill-bar">
+                        <div class="skill-progress" style="width: 90%;"></div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="skill-category reveal">
+                <h3 class="skill-category-title">
+                    <span>🛠️</span> Tools & Technologies
+                </h3>
+                <div class="skill-item">
+                    <span>PostgreSQL</span>
+                    <div class="skill-bar">
+                        <div class="skill-progress" style="width: 85%;"></div>
+                    </div>
+                </div>
+                <div class="skill-item">
+                    <span>Docker</span>
+                    <div class="skill-bar">
+                        <div class="skill-progress" style="width: 80%;"></div>
+                    </div>
+                </div>
+                <div class="skill-item">
+                    <span>Grafana</span>
+                    <div class="skill-bar">
+                        <div class="skill-progress" style="width: 75%;"></div>
+                    </div>
+                </div>
+                <div class="skill-item">
+                    <span>Azure PlayFab</span>
+                    <div class="skill-bar">
+                        <div class="skill-progress" style="width: 90%;"></div>
+                    </div>
+                </div>
+                <div class="skill-item">
+                    <span>Pandas/NumPy</span>
+                    <div class="skill-bar">
+                        <div class="skill-progress" style="width: 95%;"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="section">
+        <div class="section-header reveal">
+            <h2 class="section-title">Get In Touch</h2>
+            <p class="section-subtitle">
+                Let's discuss quantitative trading and innovative tech opportunities
+            </p>
+        </div>
+        
+        <div class="contact-container">
+            <p style="font-size: 1.2rem; line-height: 1.8; color: var(--text-secondary); margin-bottom: 3rem;" class="reveal">
+                Currently seeking summer internships in quantitative trading, research, and development. 
+                With spring insights from leading trading firms, I'm excited to contribute to cutting-edge 
+                financial technology and build systems that scale.
+            </p>
+            
+            <div class="contact-grid">
+                <a href="mailto:pmyap24@nottingham.ac.uk" class="contact-card reveal">
+                    <div class="contact-icon">🎓</div>
+                    <div>
+                        <div class="contact-title">University Email</div>
+                        <div class="contact-info">pmyap24@nottingham.ac.uk</div>
+                    </div>
+                </a>
+                
+                <a href="mailto:parekhbiz@outlook.com" class="contact-card reveal">
+                    <div class="contact-icon">💼</div>
+                    <div>
+                        <div class="contact-title">Business Email</div>
+                        <div class="contact-info">parekhbiz@outlook.com</div>
+                    </div>
+                </a>
+                
+                <a href="https://linkedin.com/in/aayush" target="_blank" class="contact-card reveal">
+                    <div class="contact-icon">🔗</div>
+                    <div>
+                        <div class="contact-title">LinkedIn</div>
+                        <div class="contact-info">linkedin.com/in/aayush</div>
+                    </div>
+                </a>
+                
+                <a href="https://github.com/aayush" target="_blank" class="contact-card reveal">
+                    <div class="contact-icon">💻</div>
+                    <div>
+                        <div class="contact-title">GitHub</div>
+                        <div class="contact-info">github.com/aayush</div>
+                    </div>
+                </a>
+            </div>
+            
+            <div style="margin-top: 3rem; padding: 2rem; background: var(--card-bg); border: 1px solid var(--card-border); border-radius: 20px;" class="reveal">
+                <h3 style="font-size: 1.3rem; margin-bottom: 1rem; color: var(--accent-primary);">Spring Insights & Awards</h3>
+                <p style="color: var(--text-secondary); line-height: 1.8;">
+                    Invited to spring insight programs at <strong>IMC Trading</strong>, <strong>D.E Shaw</strong>, 
+                    <strong>Citadel Securities</strong>, <strong>SIG</strong>, and <strong>Flow Traders</strong>. 
+                    Awards include UK BeBras Computational Challenge Gold and multiple UKMT Mathematics awards.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2025 Aayush Parekh. Building the future of quantitative finance and technology.</p>
+    </footer>
+
+    <script>
+        // Create animated particles
+        const particlesContainer = document.getElementById('particles');
+        for (let i = 0; i < 30; i++) {
+            const particle = document.createElement('div');
+            particle.className = 'particle';
+            particle.style.left = Math.random() * 100 + '%';
+            particle.style.animationDelay = Math.random() * 20 + 's';
+            particle.style.animationDuration = (20 + Math.random() * 10) + 's';
+            particlesContainer.appendChild(particle);
+        }
+
+        // Smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Scroll reveal animation
+        const revealElements = document.querySelectorAll('.reveal');
+        
+        const revealObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                }
+            });
+        }, {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        });
+
+        revealElements.forEach(element => {
+            revealObserver.observe(element);
+        });
+
+        // Navbar scroll effect
+        let lastScrollTop = 0;
+        window.addEventListener('scroll', () => {
+            const navbar = document.querySelector('nav');
+            const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+            
+            if (scrollTop > 100) {
+                navbar.style.background = 'rgba(10, 10, 10, 0.95)';
+                if (scrollTop > lastScrollTop) {
+                    navbar.style.transform = 'translateY(-100%)';
+                } else {
+                    navbar.style.transform = 'translateY(0)';
+                }
+            } else {
+                navbar.style.background = 'rgba(10, 10, 10, 0.8)';
+            }
+            
+            lastScrollTop = scrollTop;
+        });
+
+        // Animate skill bars on scroll
+        const skillBars = document.querySelectorAll('.skill-progress');
+        const skillObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const width = entry.target.style.width;
+                    entry.target.style.width = '0';
+                    setTimeout(() => {
+                        entry.target.style.width = width;
+                    }, 200);
+                }
+            });
+        }, {
+            threshold: 0.5
+        });
+
+        skillBars.forEach(bar => {
+            skillObserver.observe(bar);
+        });
+
+        // Dynamic metric counters
+        const animateValue = (element, start, end, duration, prefix = '', suffix = '') => {
+            let startTimestamp = null;
+            const step = (timestamp) => {
+                if (!startTimestamp) startTimestamp = timestamp;
+                const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+                const currentValue = Math.floor(progress * (end - start) + start);
+                element.textContent = prefix + currentValue + suffix;
+                if (progress < 1) {
+                    window.requestAnimationFrame(step);
+                }
+            };
+            window.requestAnimationFrame(step);
+        };
+
+        // Set up metric animations
+        const setupMetricAnimations = () => {
+            const metricElements = document.querySelectorAll('.metric-value');
+            metricElements.forEach(element => {
+                const text = element.textContent;
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            if (text === '$10B') {
+                                animateValue(element, 0, 10, 2000, '', 'B');
+                            } else if (text === '100K') {
+                                animateValue(element, 0, 100, 2000, '', 'K');
+                            }
+                            observer.unobserve(entry.target);
+                        }
+                    });
+                });
+                observer.observe(element);
+            });
+        };
+
+        setupMetricAnimations();
+
+        // Add hover tilt effect to cards
+        const cards = document.querySelectorAll('.project-card, .metric-card, .contact-card');
+        
+        cards.forEach(card => {
+            card.addEventListener('mousemove', (e) => {
+                const rect = card.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                const centerX = rect.width / 2;
+                const centerY = rect.height / 2;
+                const rotateX = (y - centerY) / 20;
+                const rotateY = (centerX - x) / 20;
+                
+                card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-5px)`;
+            });
+            
+            card.addEventListener('mouseleave', () => {
+                card.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) translateY(0)';
+            });
+        });
+
+        // Add parallax effect to background elements
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const parallax = document.querySelector('.background-animation');
+            const speed = 0.5;
+            if (parallax) {
+                parallax.style.transform = `translateY(${scrolled * speed}px)`;
+            }
+        });
+    </script>
 </body>
 </html>
