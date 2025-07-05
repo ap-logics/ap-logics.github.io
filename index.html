@@ -36,6 +36,23 @@
             position: relative;
         }
 
+        #live-clock {
+            position: fixed;
+            bottom: 60px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 2rem;
+            font-family: 'Orbitron', monospace;
+            color: rgba(255, 255, 255, 0.07);
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.02);
+            pointer-events: none;
+            z-index: 0;
+            letter-spacing: 4px;
+            user-select: none;
+        }
+
+
+
         /* Animated background */
         .background-animation {
             position: fixed;
@@ -452,7 +469,7 @@
             font-size: 1.5rem;
             font-weight: 600;
             margin-bottom: 0.5rem;
-            color: var(--accent-primary);
+            color: var(--text-primary);
         }
 
         .timeline-company {
@@ -784,6 +801,7 @@
     <div class="background-animation"></div>
     <div class="grid-overlay"></div>
     <div class="particles" id="particles"></div>
+    <div id="live-clock"></div>
 
     <!-- Navigation -->
     <nav>
@@ -832,7 +850,7 @@
             <div class="timeline-item reveal">
                 <div class="timeline-dot"></div>
                 <div class="timeline-content">
-                    <h3 class="timeline-title">Quantitative Research & Trading Intern</h3>
+                    <h3 class="timeline-title">Quantitative Trading Intern</h3>
                     <p class="timeline-company">Crypto HFT Firm • Jun 2025 - Present • Remote, UK</p>
                     <p class="timeline-description">
                         mm spot/perp futures across CEXs, contributing to systems processing $10bn in yearly volume.
@@ -885,10 +903,8 @@
                     </p>
                     <div class="timeline-tags">
                         <span class="tag">Lua</span>
-                        <span class="tag">TypeScript</span>
-                        <span class="tag">Python</span>
-                        <span class="tag">Azure PlayFab</span>
-                        <span class="tag">CI/CD</span>
+                        <span class="tag">Adobe</span>
+                        <span class="tag">Blender</span>
                     </div>
                 </div>
             </div>
@@ -942,8 +958,8 @@
                         <div class="project-metric-label">MAU</div>
                     </div>
                     <div class="project-metric">
-                        <div class="project-metric-value">CI/CD</div>
-                        <div class="project-metric-label">Automated Deploy</div>
+                        <div class="project-metric-value">340M+</div>
+                        <div class="project-metric-label">Total vists</div>
                     </div>
                     <div class="project-metric">
                         <div class="project-metric-value">VR</div>
@@ -1002,7 +1018,7 @@
                     <div class="contact-icon">🔗</div>
                     <div>
                         <div class="contact-title">LinkedIn</div>
-                        <div class="contact-info">linkedin.com/in/aayush</div>
+                        <div class="contact-info">linkedin.com/in/parekhaayush</div>
                     </div>
                 </a>
                 
@@ -1013,15 +1029,6 @@
                         <div class="contact-info">github.com/ap-logics</div>
                     </div>
                 </a>
-            </div>
-            
-            <div style="margin-top: 3rem; padding: 2rem; background: var(--card-bg); border: 1px solid var(--card-border); border-radius: 20px;" class="reveal">
-                <h3 style="font-size: 1.3rem; margin-bottom: 1rem; color: var(--accent-primary);">Spring Insights & Recognition</h3>
-                <p style="color: var(--text-secondary); line-height: 1.8;">
-                    Invited to spring insight programs at <strong>IMC Trading</strong>, <strong>D.E Shaw</strong>, 
-                    <strong>Citadel Securities</strong>, <strong>SIG</strong>, and <strong>Flow Traders</strong>. 
-                    Awards include UK BeBras Computational Challenge Gold and multiple UKMT Mathematics awards.
-                </p>
             </div>
         </div>
     </section>
@@ -1145,6 +1152,18 @@
                 parallax.style.transform = `translateY(${scrolled * speed}px)`;
             }
         });
+
+        // Live Clock
+        function updateClock() {
+            const clock = document.getElementById('live-clock');
+            const now = new Date();
+            const hours = String(now.getUTCHours()).padStart(2, '0');
+            const mins = String(now.getUTCMinutes()).padStart(2, '0');
+            const secs = String(now.getUTCSeconds()).padStart(2, '0');
+            clock.textContent = `${hours}:${mins}:${secs} UTC`;
+            requestAnimationFrame(updateClock);
+        }
+        updateClock();
     </script>
 </body>
 </html>
