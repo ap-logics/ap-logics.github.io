@@ -828,7 +828,7 @@
                     Game developer & mathematician
                 </h1>
                 <p class="hero-subtitle">
-                    a mathematics undergrad at the University of Nottingham, experienced in game developemt, research & trading,
+                    a mathematics undergrad at the University of Nottingham, experienced in game development, research & trading,
                     i nerd out in optimising complex systems for millions of players and also the markets.
 
                     currently exploring opportunities in DeFi, and learning more about mathematics overall 
@@ -1044,6 +1044,24 @@
             particle.style.animationDuration = (20 + Math.random() * 10) + 's';
             particlesContainer.appendChild(particle);
         }
+
+        // Sound effect
+        document.addEventListener('DOMContentLoaded', () => {
+            const clickSound = new Audio('assets/sounds/click.wav');
+            clickSound.preload = 'auto'; // Preload the entire file
+            clickSound.volume = 0.3; // Adjust volume (0.0 to 1.0)
+
+            const playClickSound = () => {
+                clickSound.currentTime = 0;
+                clickSound.play().catch(e => {
+                    console.warn("Could not play sound. User interaction might be required first.", e);
+                });
+            }
+
+            document.body.addEventListener('click', (event) => {
+                playClickSound()
+            })
+        })
 
         // Smooth scrolling
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
