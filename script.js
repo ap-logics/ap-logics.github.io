@@ -1,4 +1,4 @@
-// Custom Cursor - Only for desktop
+// Custom Cursor - Only for desktop - change to deploy
 if (window.matchMedia("(hover: hover) and (pointer: fine)").matches) {
     const cursor = document.querySelector('.cursor');
 
