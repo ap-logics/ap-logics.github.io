@@ -1,4 +1,41 @@
-// Custom Cursor - Only for desktop - change to deploy
+const matrixCanvas = document.getElementById('matrix-bg');
+const matrixCtx = matrixCanvas.getContext('2d');
+
+matrixCanvas.width = window.innerWidth;
+matrixCanvas.height = window.innerHeight;
+
+const katakana = 'アァカサタナハマヤャラワガザダバパイィキシチニヒミリヰギジヂビピウゥクスツヌフムユュルグズヅブプエェケセテネヘメレヱゲゼデベペオォコソトノホモヨョロヲゴゾドボポヴッン';
+const latin = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+const nums = '0123456789';
+const alphabet = katakana + latin + nums;
+
+const fontSize = 16;
+const columns = matrixCanvas.width / fontSize;
+const drops = [];
+
+const tradingCanvas = document.getElementById('trading-bg');
+const tradingCtx = tradingCanvas.getContext('2d');
+
+tradingCanvas.width = window.innerWidth;
+tradingCanvas.height = window.innerHeight;
+
+const candleWidth = 12;
+const candleSpacing = 8;
+const numCandles = Math.floor(tradingCanvas.width / (candleWidth + candleSpacing));
+
+const konamiCode = ['ArrowUp', 'ArrowUp', 'ArrowDown', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'ArrowLeft', 'ArrowRight', 'b', 'a'];
+let konamiIndex = 0;
+
+let candles = [];
+let basePrice = tradingCanvas.height / 2;
+let trend = 0.5;
+let volatility = 30;
+
+for (let i = 0; i < numCandles; i++) {
+    candles.push(null);
+}
+
+
 if (window.matchMedia("(hover: hover) and (pointer: fine)").matches) {
     const cursor = document.querySelector('.cursor');
 
@@ -16,21 +53,6 @@ if (window.matchMedia("(hover: hover) and (pointer: fine)").matches) {
     });
 }
 
-// Matrix Rain Background
-const matrixCanvas = document.getElementById('matrix-bg');
-const matrixCtx = matrixCanvas.getContext('2d');
-
-matrixCanvas.width = window.innerWidth;
-matrixCanvas.height = window.innerHeight;
-
-const katakana = 'アァカサタナハマヤャラワガザダバパイィキシチニヒミリヰギジヂビピウゥクスツヌフムユュルグズヅブプエェケセテネヘメレヱゲゼデベペオォコソトノホモヨョロヲゴゾドボポヴッン';
-const latin = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-const nums = '0123456789';
-const alphabet = katakana + latin + nums;
-
-const fontSize = 16;
-const columns = matrixCanvas.width / fontSize;
-const drops = [];
 
 for (let x = 0; x < columns; x++) {
     drops[x] = 1;
@@ -54,30 +76,7 @@ function drawMatrix() {
     }
 }
 
-// Trading Chart Background
-const tradingCanvas = document.getElementById('trading-bg');
-const tradingCtx = tradingCanvas.getContext('2d');
-
-tradingCanvas.width = window.innerWidth;
-tradingCanvas.height = window.innerHeight;
-
-const candleWidth = 12;
-const candleSpacing = 8;
-const numCandles = Math.floor(tradingCanvas.width / (candleWidth + candleSpacing));
-
-// Create array to store candle data
-let candles = [];
-let basePrice = tradingCanvas.height / 2;
-let trend = 0.5; // Start neutral
-let volatility = 30;
-
-// Initialize with empty candles
-for (let i = 0; i < numCandles; i++) {
-    candles.push(null);
-}
-
 function addNewCandle() {
-    // Create a more realistic price movement pattern
     const trendChange = (Math.random() - 0.5) * 0.1;
     trend = Math.max(-1, Math.min(1, trend + trendChange));
     
@@ -97,7 +96,6 @@ function addNewCandle() {
         isBullish: close > open
     };
 
-    // Shift all candles left and add new one at the end
     candles.shift();
     candles.push(newCandle);
 }
@@ -107,34 +105,30 @@ function drawTradingChart() {
 
     for (let i = 0; i < candles.length; i++) {
         const candle = candles[i];
-        if (!candle) continue; // Skip empty candles
+        if (!candle) continue;
 
         const x = i * (candleWidth + candleSpacing);
         
-        // More visible but still subtle colors
-        const neonColor = 'rgba(0, 255, 136, 0.4)'; // More visible neon green
-        const purpleColor = 'rgba(153, 69, 255, 0.35)'; // More visible purple
+        const neonColor = 'rgba(0, 255, 136, 0.4)';
+        const purpleColor = 'rgba(153, 69, 255, 0.35)';
         
         tradingCtx.fillStyle = candle.isBullish ? neonColor : purpleColor;
         tradingCtx.strokeStyle = candle.isBullish ? neonColor : purpleColor;
         tradingCtx.lineWidth = 2;
 
-        // Draw wick
         tradingCtx.beginPath();
         tradingCtx.moveTo(x + candleWidth / 2, candle.high);
         tradingCtx.lineTo(x + candleWidth / 2, candle.low);
         tradingCtx.stroke();
 
-        // Draw body
         tradingCtx.fillRect(x, Math.min(candle.open, candle.close), candleWidth, Math.abs(candle.open - candle.close));
     }
 }
 
-// Animation Loop
 let lastMatrixTime = 0;
 let lastTradingTime = 0;
-const matrixInterval = 50; // ms
-const tradingInterval = 3000; // ms - Much slower updates
+const matrixInterval = 50;
+const tradingInterval = 3000;
 
 function animate(currentTime) {
     if (currentTime - lastMatrixTime > matrixInterval) {
@@ -143,8 +137,8 @@ function animate(currentTime) {
     }
 
     if (currentTime - lastTradingTime > tradingInterval) {
-        addNewCandle(); // Add one new candle
-        drawTradingChart(); // Then redraw the chart
+        addNewCandle();
+        drawTradingChart();
         lastTradingTime = currentTime;
     }
     requestAnimationFrame(animate);
@@ -152,28 +146,22 @@ function animate(currentTime) {
 
 requestAnimationFrame(animate);
 
-// Handle window resize
+
 window.addEventListener('resize', () => {
     matrixCanvas.width = window.innerWidth;
     matrixCanvas.height = window.innerHeight;
     tradingCanvas.width = window.innerWidth;
     tradingCanvas.height = window.innerHeight;
     
-    // Reinitialize candles array for new screen size
     const newNumCandles = Math.floor(tradingCanvas.width / (candleWidth + candleSpacing));
     candles = [];
     for (let i = 0; i < newNumCandles; i++) {
         candles.push(null);
     }
     
-    // Redraw immediately on resize
     drawMatrix();
     drawTradingChart();
 });
-
-// Konami Code Easter Egg
-const konamiCode = ['ArrowUp', 'ArrowUp', 'ArrowDown', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'ArrowLeft', 'ArrowRight', 'b', 'a'];
-let konamiIndex = 0;
 
 document.addEventListener('keydown', (e) => {
     if (e.key === konamiCode[konamiIndex]) {
